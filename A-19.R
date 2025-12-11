@@ -12,3 +12,11 @@ school_debt_us <- loans_raw %>%
     total_recipients = sum(Recipients, na.rm = TRUE),
     avg_loan         = total_amount / total_recipients,
     .groups = "drop"
+) %>%
+  filter(!is.na(avg_loan), total_recipients > 0) %>%
+  mutate(
+    Type2 = ifelse(`School Type` == "Public", "Public", "Private"),
+    Type2 = factor(Type2, levels = c("Public", "Private"))
+  )
+
+ggplot(school_debt_us,
