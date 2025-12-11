@@ -31,3 +31,15 @@ aes(x = Type2, y = avg_loan)) +
 
 ggplot(school_debt_us,
        aes(x = avg_loan, fill = Type2)) +
+geom_histogram(position = "identity", alpha = 0.5, bins = 30) +
+  labs(
+    title = "Distribution of Average Loan per Recipient",
+    x = "Average Loan per Recipient (USD)",
+    y = "Count of Universities"
+  ) +
+  theme_minimal()
+
+t_test_result <- t.test(avg_loan ~ Type2, data = school_debt_us, var.equal = FALSE)
+t_test_result
+wilcox_result <- wilcox.test(avg_loan ~ Type2, data = school_debt_us, exact = FALSE)
+wilcox_result
