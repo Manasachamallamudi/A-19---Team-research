@@ -20,3 +20,14 @@ school_debt_us <- loans_raw %>%
   )
 
 ggplot(school_debt_us,
+aes(x = Type2, y = avg_loan)) +
+  geom_boxplot() +
+  labs(
+    title = "Average Student Loan Amount per Recipient\nby School Type",
+    x = "School Type",
+    y = "Average Loan per Recipient (USD)"
+  ) +
+  theme_minimal()
+
+ggplot(school_debt_us,
+       aes(x = avg_loan, fill = Type2)) +
